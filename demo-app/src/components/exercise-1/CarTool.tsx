@@ -33,14 +33,18 @@ export const CarTool = () => {
                 </tr>
             </thead>
             <tbody>
-                {cars.map(car => <tr key={car.id}>
-                    <td>{car.id}</td>
-                    <td>{car.make}</td>
-                    <td>{car.model}</td>
-                    <td>{car.year}</td>
-                    <td>{car.color}</td>
-                    <td>{car.price}</td>
-                </tr>)}
+                {
+                    cars.map(car => 
+                        <tr key={car.id}>
+                            <td>{car.id}</td>
+                            <td>{car.make}</td>
+                            <td>{car.model}</td>
+                            <td>{car.year}</td>
+                            <td>{car.color}</td>
+                            <td>{car.price}</td>
+                        </tr>
+                    )
+                }
             </tbody>
         </table>
     </header>

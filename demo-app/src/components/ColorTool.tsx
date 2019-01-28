@@ -9,7 +9,9 @@ export const ColorTool = () => {
             <h1>Color Tool</h1>
         </header>
         <ul>
-            {colors.map(color => <li key={color}>{color}</li>)}
+            {
+                colors.map(color => <li key={color}>{color}</li>)
+            }
         </ul>
     </>
 }
