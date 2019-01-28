@@ -6,12 +6,14 @@ interface ColorToolProps {
 
 interface ColorToolState {
     color: string;
+    colors: string[],
     [ x: string]: any; //Allows for the [e.target.name] call in the change() function
 }
 
 export class ColorTool extends React.Component<ColorToolProps,ColorToolState> {
     state = {
         color: '',
+        colors: this.props.colors.slice(),
     }
 
     //class arrow functions, not valid JS but used for
@@ -24,6 +26,14 @@ export class ColorTool extends React.Component<ColorToolProps,ColorToolState> {
         });
     };
 
+    addColor = () => {
+        if(!this.state.color) return;
+        this.setState({
+            colors: this.state.colors.concat(this.state.color),
+            color: ''
+        });
+    }
+
     render () {
         return <>
             <header>
@@ -31,7 +41,7 @@ export class ColorTool extends React.Component<ColorToolProps,ColorToolState> {
             </header>
             <ul>
                 {
-                    this.props.colors.map(color => 
+                    this.state.colors.map(color => 
                         <li key={color}>{color}</li>
                     )
                 }
@@ -41,6 +51,9 @@ export class ColorTool extends React.Component<ColorToolProps,ColorToolState> {
                 <div>
                     <label htmlFor="color-input">New Color:</label>
                     <input type="text" id="color-input" name="color" value={this.state.color} onChange={this.change}/>
+                </div>
+                <div>
+                    <button type="button" onClick={this.addColor}>Add Color</button>
                 </div>
             </form>
         </>
