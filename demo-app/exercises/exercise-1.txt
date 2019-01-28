@@ -1,0 +1,11 @@
+https://gitlab.com/t4d-classes/react-typescript_01282019
+
+1.Create a new component named CarTool.
+
+2. In the CarTool component, display a header using a header tag and h1 tag which displays "Car Tool".
+
+3. Import CarTool into index.js, and display the CarTool component under the HelloWorld.
+
+4. Run the app to ensure it works.
+
+The definition of "works" is not what you see in the browser, it's the DOM structure produced by React.
