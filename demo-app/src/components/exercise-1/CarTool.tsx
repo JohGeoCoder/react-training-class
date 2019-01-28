@@ -17,6 +17,14 @@ interface CarToolTypeProps {
 
 export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
 
+    state = {
+        make: '',
+        model: '',
+        year: 0,
+        color: '',
+        price: 0
+    }
+
     change = ({ target : { name, value, type }}: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             [ name ]: type === 'number' ?  Number(value) : value,
@@ -58,26 +66,28 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
                 <h3>Add a new car</h3>
                 <form>
                     <table>
-                        <tr>
-                            <td><label htmlFor="make">Make:</label></td>
-                            <td><input type="text" name="make" onChange={this.change} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="model">Model:</label></td>
-                            <td><input type="text" name="model" onChange={this.change} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="year">Year:</label></td>
-                            <td><input type="number" name="year" onChange={this.change}  /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="color">Color:</label></td>
-                            <td><input type="text" name="color" onChange={this.change}  /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="price">Price:</label></td>
-                            <td><input type="number" name="price" onChange={this.change}  /></td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td><label htmlFor="make">Make:</label></td>
+                                <td><input type="text" name="make" value={this.state.make} onChange={this.change} /></td>
+                            </tr>
+                            <tr>
+                                <td><label htmlFor="model">Model:</label></td>
+                                <td><input type="text" name="model" value={this.state.model} onChange={this.change} /></td>
+                            </tr>
+                            <tr>
+                                <td><label htmlFor="year">Year:</label></td>
+                                <td><input type="number" name="year" value={this.state.year} onChange={this.change}  /></td>
+                            </tr>
+                            <tr>
+                                <td><label htmlFor="color">Color:</label></td>
+                                <td><input type="text" name="color" value={this.state.color} onChange={this.change}  /></td>
+                            </tr>
+                            <tr>
+                                <td><label htmlFor="price">Price:</label></td>
+                                <td><input type="number" name="price" value={this.state.price} onChange={this.change}  /></td>
+                            </tr>
+                        </tbody>
                     </table>                    
                 </form>
             </div>
