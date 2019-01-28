@@ -1,0 +1,6 @@
+1. Create a car form to collect make, model, year, color, and price.
+
+2. Output the collected car data using a callback to the setState function.
+
+3. Ensure the collected data populates the component state. Don't worry about adding the car yet.
+
