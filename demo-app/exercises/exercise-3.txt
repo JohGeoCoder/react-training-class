@@ -1,0 +1,5 @@
+Exercise 3
+
+1. Move the array of cars to index.tsx. Pass the array of cars into CarTool and display them.
+
+2. Ensure it works. 

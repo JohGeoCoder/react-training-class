@@ -1,24 +1,12 @@
 import React from 'react';
 
-export const CarTool = () => {
+import { Car } from '../../models/Car';
 
-    const cars = [ {
-        id: 12,
-        make: "Buick",
-        model: "Century",
-        year: "1991",
-        color: "Blue",
-        price: "10000"
-    },
-    {
-        id: 17,
-        make: "Honda",
-        model: "Civic",
-        year: "2014",
-        color: "Silver",
-        price: "19999"
-    }]
+interface CarListTypeProps {
+    cars : Car[];
+}
 
+export const CarTool = (props: CarListTypeProps) => {
     return <header>
         <h1>Car Tool</h1>
         <table>
@@ -34,7 +22,7 @@ export const CarTool = () => {
             </thead>
             <tbody>
                 {
-                    cars.map(car => 
+                    props.cars.map(car => 
                         <tr key={car.id}>
                             <td>{car.id}</td>
                             <td>{car.make}</td>
