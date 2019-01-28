@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Car } from '../models/Car';
+import { CarViewRow } from './CarViewRow';
 
 interface CarTableProps {
     cars: Car[];
@@ -79,14 +80,7 @@ export class CarTable extends React.Component<CarTableProps,CarTableState> {
                 <tbody>
                     {
                         this.state.cars.map(car => 
-                            <tr key={car.id}>
-                                <td>{car.id}</td>
-                                <td>{car.make}</td>
-                                <td>{car.model}</td>
-                                <td>{car.year}</td>
-                                <td>{car.color}</td>
-                                <td>{car.price}</td>
-                            </tr>
+                            <CarViewRow carId={car.id} make={car.make} model={car.model} year={car.year} color={car.color} price={car.price} />
                         )
                     }
                 </tbody>
