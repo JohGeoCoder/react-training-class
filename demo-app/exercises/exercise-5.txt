@@ -1,0 +1,5 @@
+Exercise 5
+
+1. Take the collected car data and add a car to the array of cars. Be sure to set the id.
+2. Clear the form after adding the car.
+3. Ensure it works.

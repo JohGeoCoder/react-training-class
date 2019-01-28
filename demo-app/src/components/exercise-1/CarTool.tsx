@@ -9,6 +9,8 @@ interface CarToolState {
     color: string;
     price: number;
     [ x: string]: any; //Allows for the [e.target.name] call in the change() function
+
+    cars: Car[];
 };
 
 interface CarToolTypeProps {
@@ -22,7 +24,8 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         model: '',
         year: 0,
         color: '',
-        price: 0
+        price: 0,
+        cars: this.props.cars.concat(),
     }
 
     change = ({ target : { name, value, type }}: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +34,34 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         }, () => {
             console.log(this.state)
         });
+    }
+
+    addCar = () => {
+
+        var newId = 1;
+        if(this.state.cars.length){
+            newId = Math.max(...this.state.cars.map(car => car.id)) + 1;
+        }
+
+        var newCar = {
+            id: newId,
+            make: this.state.make,
+            model: this.state.model,
+            year: this.state.year,
+            color: this.state.color,
+            price: this.state.price
+        }
+
+        this.setState({
+            make: '',
+            model: '',
+            year: 0,
+            color: '',
+            price: 0,
+            cars: [ ...this.state.cars, newCar ]
+        }, () => {
+            console.log(this.state.cars)
+        })
     }
 
     render() {
@@ -49,7 +80,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
                 </thead>
                 <tbody>
                     {
-                        this.props.cars.map(car => 
+                        this.state.cars.map(car => 
                             <tr key={car.id}>
                                 <td>{car.id}</td>
                                 <td>{car.make}</td>
@@ -88,7 +119,10 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
                                 <td><input type="number" name="price" value={this.state.price} onChange={this.change}  /></td>
                             </tr>
                         </tbody>
-                    </table>                    
+                    </table>
+                    <div>
+                        <button type="button" onClick={this.addCar}>Add Car</button>
+                    </div>                 
                 </form>
             </div>
         </header>
