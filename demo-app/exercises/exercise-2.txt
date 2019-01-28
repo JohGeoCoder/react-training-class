@@ -9,5 +9,5 @@ year: number
 color: string
 price: number
 
-2. Beneacth the car tool header element, create/display a car table composed of a table and related elements. For the display, appropriate column headers. Display the array of car objects in the table.
+2. Beneath the car tool header element, create/display a car table composed of a table and related elements. For the display, appropriate column headers. Display the array of car objects in the table.
 
