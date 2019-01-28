@@ -1,0 +1,13 @@
+Exercise 2
+
+1.Within CarTool, create an array of car obects and assign it to a variable Each car object should have the following properties, create 2 cars...
+
+id: number
+make: string
+model: string
+year: number
+color: string
+price: number
+
+2. Beneacth the car tool header element, create/display a car table composed of a table and related elements. For the display, appropriate column headers. Display the array of car objects in the table.
+
