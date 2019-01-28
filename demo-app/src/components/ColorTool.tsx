@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ToolHeader } from './ToolHeader';
+
 interface ColorToolProps {
     colors: string[];
 }
@@ -36,9 +38,7 @@ export class ColorTool extends React.Component<ColorToolProps,ColorToolState> {
 
     render () {
         return <>
-            <header>
-                <h1>Color Tool</h1>
-            </header>
+            <ToolHeader headerText="Color Tool" />
             <ul>
                 {
                     this.state.colors.map(color => 

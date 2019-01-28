@@ -1,8 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import { Car } from '../../models/Car';
+import { Car } from '../models/Car';
 
-interface CarToolState {
+interface CarTableProps {
+    cars: Car[];
+}
+
+interface CarTableState {
     make: string;
     model: string;
     year: number;
@@ -13,12 +17,7 @@ interface CarToolState {
     cars: Car[];
 };
 
-interface CarToolTypeProps {
-    cars : Car[];
-}
-
-export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
-
+export class CarTable extends React.Component<CarTableProps,CarTableState> {
     state = {
         make: '',
         model: '',
@@ -40,7 +39,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
 
         var newId = 1;
         if(this.state.cars.length){
-            newId = Math.max(...this.state.cars.map(car => car.id)) + 1;
+            newId = Math.max(...this.state.cars.map(car => car.id), 0) + 1;
         }
 
         var newCar = {
@@ -65,8 +64,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
     }
 
     render() {
-        return <header>
-            <h1>Car Tool</h1>
+        return <>
             <table>
                 <thead>
                     <tr>
@@ -125,7 +123,6 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
                     </div>                 
                 </form>
             </div>
-        </header>
+        </>
     }
-
-};
+}

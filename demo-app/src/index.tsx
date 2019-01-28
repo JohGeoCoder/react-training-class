@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { CarTool } from './components/exercise-1/CarTool';
+import { CarTool } from './components/CarTool';
 import { ColorTool } from './components/ColorTool';
 
 import { Car } from './models/Car';
