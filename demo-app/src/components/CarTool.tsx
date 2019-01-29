@@ -54,8 +54,9 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         });
     };
 
-    saveCar = (carToSave: Car) => {
-
+    updateCar = (carToSave: Car) => {
+        
+        //Retrieve the car we want to edit.
         let carToEdit = this.state.cars.filter(car => car.id === carToSave.id)[0];
 
         carToEdit.make = carToSave.make;
@@ -70,7 +71,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         })
     };
 
-    cancelCarEdit = () => {
+    cancelCarUpdate = () => {
         this.setState({
             carIdToEdit: 0
         })
@@ -83,8 +84,8 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
                 onDeleteCarHandler={this.deleteCar} 
                 carIdToEdit={this.state.carIdToEdit}
                 onInitializeCarEdit={this.initializeCarEdit}
-                onSaveCarHandler={this.saveCar}
-                onCancelEditHandler={this.cancelCarEdit} />
+                onUpdateCarHandler={this.updateCar}
+                onCancelUpdateHandler={this.cancelCarUpdate} />
             <CarForm onSubmitCar={this.addCar} />
         </>
     };

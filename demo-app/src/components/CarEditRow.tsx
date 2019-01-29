@@ -3,7 +3,7 @@ import { Car } from '../models/Car';
 
 interface CarEditRowProps {
     car: Car;
-    onSaveHandler: (savedCarData: Car) => void;
+    onUpdateHandler: (savedCarData: Car) => void;
     onCancelHandler: (carId: number) => void;
 }
 
@@ -43,7 +43,7 @@ export class CarEditRow extends React.Component<CarEditRowProps, CarEditRowState
             price: this.state.price
         };
 
-        this.props.onSaveHandler(carToSave);
+        this.props.onUpdateHandler(carToSave);
     };
 
     render() {

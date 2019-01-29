@@ -9,8 +9,8 @@ interface CarTableProps {
     carIdToEdit: number,
     onInitializeCarEdit: (carId: number) => void;
     onDeleteCarHandler: (carId: number) => void;
-    onSaveCarHandler: (car: Car) => void;
-    onCancelEditHandler: () => void;
+    onUpdateCarHandler: (car: Car) => void;
+    onCancelUpdateHandler: () => void;
 };
 
 export const CarTable = (props: CarTableProps) => {
@@ -31,7 +31,7 @@ export const CarTable = (props: CarTableProps) => {
                 {
                     props.cars.map(car => {
                         if(car.id === props.carIdToEdit){
-                            return <CarEditRow key={car.id} car={car} onSaveHandler={props.onSaveCarHandler} onCancelHandler={props.onCancelEditHandler} />
+                            return <CarEditRow key={car.id} car={car} onUpdateHandler={props.onUpdateCarHandler} onCancelHandler={props.onCancelUpdateHandler} />
                         } else{
                             return <CarViewRow key={car.id} car={car} onDeleteCarHandler={props.onDeleteCarHandler} onEditHandler={props.onInitializeCarEdit} />
                         }
