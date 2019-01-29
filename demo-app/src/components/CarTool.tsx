@@ -7,7 +7,7 @@ import { CarForm } from './CarForm';
 
 interface CarToolState {
     cars: Car[];
-    carIdToEdit: number;
+    carIdToUpdate: number;
 
 };
 
@@ -19,9 +19,10 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
 
     state = {
         cars: this.props.cars.concat(),
-        carIdToEdit: 0,
+        carIdToUpdate: 0,
     };
 
+    //Add this new car to the collection of cars.
     addCar = (submittedCar: Car) => {
         var newId = 1;
         if(this.state.cars.length){
@@ -37,6 +38,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         })
     };
 
+    //Delete the selected car
     deleteCar = (carIdToDelete: number) => {
         if(!carIdToDelete) return;
 
@@ -44,48 +46,55 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
             cars: this.state.cars.filter(car => {
                 return car.id !== carIdToDelete
             }),
-            carIdToEdit: 0
+            carIdToUpdate: 0
         })
     }
 
-    initializeCarEdit = (carId: number) => {
+    //Switch the selected Car to edit mode
+    initializeCarUpdate = (carId: number) => {
         this.setState({
-            carIdToEdit: carId
+            carIdToUpdate: carId
         });
     };
 
-    updateCar = (carToSave: Car) => {
+    //Update the target car with new information
+    updateCar = (newCarInformation: Car) => {
         
         //Retrieve the car we want to edit.
-        let carToEdit = this.state.cars.filter(car => car.id === carToSave.id)[0];
+        let carToEdit = this.state.cars.filter(car => car.id === this.state.carIdToUpdate)[0];
 
-        carToEdit.make = carToSave.make;
-        carToEdit.model = carToSave.model;
-        carToEdit.year = carToSave.year;
-        carToEdit.color = carToSave.color;
-        carToEdit.price = carToSave.price;
+        //Update the car with the new data.
+        carToEdit.make = newCarInformation.make;
+        carToEdit.model = newCarInformation.model;
+        carToEdit.year = newCarInformation.year;
+        carToEdit.color = newCarInformation.color;
+        carToEdit.price = newCarInformation.price;
 
+        //Set the state
         this.setState({
             cars: this.state.cars,
-            carIdToEdit: 0
+            carIdToUpdate: 0
         })
     };
 
+    //Cancel the car update
     cancelCarUpdate = () => {
         this.setState({
-            carIdToEdit: 0
+            carIdToUpdate: 0
         })
     };
 
     render() {
         return <>
             <ToolHeader headerText="Car Tool" />
+
             <CarTable cars={this.state.cars} 
                 onDeleteCarHandler={this.deleteCar} 
-                carIdToEdit={this.state.carIdToEdit}
-                onInitializeCarEdit={this.initializeCarEdit}
+                carIdToEdit={this.state.carIdToUpdate}
+                onInitializeCarEdit={this.initializeCarUpdate}
                 onUpdateCarHandler={this.updateCar}
                 onCancelUpdateHandler={this.cancelCarUpdate} />
+                
             <CarForm onSubmitCar={this.addCar} />
         </>
     };

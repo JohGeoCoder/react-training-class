@@ -25,6 +25,7 @@ export class CarEditRow extends React.Component<CarEditRowProps, CarEditRowState
         price: this.props.car.price,
     };
 
+    //Manage the changes to the input fields in the component's state.
     change = ({ target : { name, value, type }}: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             [ name ]: type === 'number' ?  Number(value) : value,
@@ -33,6 +34,7 @@ export class CarEditRow extends React.Component<CarEditRowProps, CarEditRowState
         });
     };
 
+    //Package the modified date into a Car model and pass it to the Update handler.
     saveCar = () => {
         let carToSave: Car = {
             id: this.props.car.id,

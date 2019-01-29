@@ -30,6 +30,9 @@ export const CarTable = (props: CarTableProps) => {
             <tbody>
                 {
                     props.cars.map(car => {
+
+                        //If this car is flagged for editing, display the CarEditRow component.
+                        //Otherwise, display the CarViewRow component.
                         if(car.id === props.carIdToEdit){
                             return <CarEditRow key={car.id} car={car} onUpdateHandler={props.onUpdateCarHandler} onCancelHandler={props.onCancelUpdateHandler} />
                         } else{
