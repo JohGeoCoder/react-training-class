@@ -1,0 +1,5 @@
+Exercise 7
+
+1. Move Car Form to its own component. Utilize Car Form in Car Tool.
+
+2. Ensure the application works.

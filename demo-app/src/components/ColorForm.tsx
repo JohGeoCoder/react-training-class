@@ -11,7 +11,7 @@ interface ColorFormState {
 }
 
 export class ColorForm extends React.Component<ColorFormProps, ColorFormState> {
-    static defaultProps =  { buttonText : 'Submit Color' }
+    static defaultProps = { buttonText : 'Submit Color' }
 
     state = {
         color: '',
