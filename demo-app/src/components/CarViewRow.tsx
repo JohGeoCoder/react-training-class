@@ -3,21 +3,18 @@ import React from 'react'
 import { Car } from '../models/Car';
 
 interface CarViewRowProps {
-    carId: number;
-    make: string;
-    model: string;
-    year: number;
-    color: string;
-    price: number;
+    car: Car;
+    deleteCarHandler:(carId: number) => void;
 }
 
 export const CarViewRow = (props: CarViewRowProps) => {
-    return <tr key={props.carId}>
-    <td>{props.carId}</td>
-    <td>{props.make}</td>
-    <td>{props.model}</td>
-    <td>{props.year}</td>
-    <td>{props.color}</td>
-    <td>{props.price}</td>
-</tr>
+    return <tr>
+        <td>{props.car.id}</td>
+        <td>{props.car.make}</td>
+        <td>{props.car.model}</td>
+        <td>{props.car.year}</td>
+        <td>{props.car.color}</td>
+        <td>{props.car.price}</td>
+        <td><button type="button" onClick={() => props.deleteCarHandler(props.car.id)}>Delete</button></td>
+    </tr>
 }
