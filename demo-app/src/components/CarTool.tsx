@@ -8,7 +8,6 @@ import { CarForm } from './CarForm';
 interface CarToolState {
     cars: Car[];
     carIdToUpdate: number;
-
 };
 
 interface CarToolTypeProps {
@@ -32,7 +31,8 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         submittedCar.id = newId;
 
         this.setState({
-            cars: [ ...this.state.cars, submittedCar ]
+            cars: [ ...this.state.cars, submittedCar ],
+            carIdToUpdate: 0
         }, () => {
             console.log(this.state.cars)
         })
@@ -59,20 +59,15 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
 
     //Update the target car with new information
     updateCar = (newCarInformation: Car) => {
-        
-        //Retrieve the car we want to edit.
-        let carToEdit = this.state.cars.filter(car => car.id === this.state.carIdToUpdate)[0];
 
-        //Update the car with the new data.
-        carToEdit.make = newCarInformation.make;
-        carToEdit.model = newCarInformation.model;
-        carToEdit.year = newCarInformation.year;
-        carToEdit.color = newCarInformation.color;
-        carToEdit.price = newCarInformation.price;
+        let newCarArray = this.state.cars.slice();
+        let carIndexToUpdate = newCarArray.findIndex(car => car.id === this.state.carIdToUpdate)
+
+        newCarArray[carIndexToUpdate] = newCarInformation;
 
         //Set the state
         this.setState({
-            cars: this.state.cars,
+            cars: newCarArray,
             carIdToUpdate: 0
         })
     };
@@ -94,7 +89,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
                 onInitializeCarEdit={this.initializeCarUpdate}
                 onUpdateCarHandler={this.updateCar}
                 onCancelUpdateHandler={this.cancelCarUpdate} />
-                
+
             <CarForm onSubmitCar={this.addCar} />
         </>
     };

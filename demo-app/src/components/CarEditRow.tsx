@@ -4,7 +4,7 @@ import { Car } from '../models/Car';
 interface CarEditRowProps {
     car: Car;
     onUpdateHandler: (savedCarData: Car) => void;
-    onCancelHandler: (carId: number) => void;
+    onCancelHandler: () => void;
 }
 
 interface CarEditRowState {
@@ -57,7 +57,7 @@ export class CarEditRow extends React.Component<CarEditRowProps, CarEditRowState
             <td><input type="text" value={this.state.color} name="color" onChange={this.change} /></td>
             <td><input type="text" value={this.state.price} name="price" onChange={this.change} /></td>
             <td><button type="button" onClick={() => this.saveCar()}>Save</button></td>
-            <td><button type="button" onClick={() => this.props.onCancelHandler(this.props.car.id as number)}>Cancel</button></td>
+            <td><button type="button" onClick={() => this.props.onCancelHandler()}>Cancel</button></td>
         </tr>
     };
 };

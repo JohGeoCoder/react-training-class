@@ -34,9 +34,15 @@ export const CarTable = (props: CarTableProps) => {
                         //If this car is flagged for editing, display the CarEditRow component.
                         //Otherwise, display the CarViewRow component.
                         if(car.id === props.carIdToEdit){
-                            return <CarEditRow key={car.id} car={car} onUpdateHandler={props.onUpdateCarHandler} onCancelHandler={props.onCancelUpdateHandler} />
+                            return <CarEditRow key={car.id} 
+                                car={car} 
+                                onUpdateHandler={props.onUpdateCarHandler} 
+                                onCancelHandler={props.onCancelUpdateHandler} />
                         } else{
-                            return <CarViewRow key={car.id} car={car} onDeleteCarHandler={props.onDeleteCarHandler} onEditHandler={props.onInitializeCarEdit} />
+                            return <CarViewRow key={car.id} 
+                                car={car} 
+                                onDeleteCarHandler={props.onDeleteCarHandler} 
+                                onEditHandler={props.onInitializeCarEdit} />
                         }
                         
                     })
