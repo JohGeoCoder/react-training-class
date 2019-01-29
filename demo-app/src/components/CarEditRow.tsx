@@ -23,7 +23,7 @@ export class CarEditRow extends React.Component<CarEditRowProps, CarEditRowState
         year: this.props.car.year,
         color: this.props.car.color,
         price: this.props.car.price,
-    }
+    };
 
     change = ({ target : { name, value, type }}: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
@@ -31,7 +31,7 @@ export class CarEditRow extends React.Component<CarEditRowProps, CarEditRowState
         }, () => {
             console.log(this.state)
         });
-    }
+    };
 
     saveCar = () => {
         let carToSave: Car = {
@@ -41,10 +41,10 @@ export class CarEditRow extends React.Component<CarEditRowProps, CarEditRowState
             year: this.state.year,
             color: this.state.color,
             price: this.state.price
-        }
+        };
 
         this.props.onSaveHandler(carToSave);
-    }
+    };
 
     render() {
         return <tr>
@@ -57,5 +57,5 @@ export class CarEditRow extends React.Component<CarEditRowProps, CarEditRowState
             <td><button type="button" onClick={() => this.saveCar()}>Save</button></td>
             <td><button type="button" onClick={() => this.props.onCancelHandler(this.props.car.id as number)}>Cancel</button></td>
         </tr>
-    } 
-}
+    };
+};

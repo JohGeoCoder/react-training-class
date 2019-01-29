@@ -11,7 +11,7 @@ interface CarTableProps {
     onDeleteCarHandler: (carId: number) => void;
     onSaveCarHandler: (car: Car) => void;
     onCancelEditHandler: () => void;
-}
+};
 
 export const CarTable = (props: CarTableProps) => {
 

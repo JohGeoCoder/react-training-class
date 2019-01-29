@@ -13,17 +13,20 @@ interface CarToolState {
 
 interface CarToolTypeProps {
     cars : Car[];
-}
+};
 
 export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
 
     state = {
         cars: this.props.cars.concat(),
         carIdToEdit: 0,
-    }
+    };
 
     addCar = (submittedCar: Car) => {
-        var newId = this.getNewId();
+        var newId = 1;
+        if(this.state.cars.length){
+            newId = Math.max(...this.state.cars.map(car => car.id as number), 0) + 1;
+        }
 
         submittedCar.id = newId;
 
@@ -32,7 +35,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         }, () => {
             console.log(this.state.cars)
         })
-    }
+    };
 
     deleteCar = (carIdToDelete: number) => {
         if(!carIdToDelete) return;
@@ -45,20 +48,11 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         })
     }
 
-    getNewId = () => {
-        var newId = 1;
-        if(this.state.cars.length){
-            newId = Math.max(...this.state.cars.map(car => car.id as number), 0) + 1;
-        }
-
-        return newId;
-    }
-
     initializeCarEdit = (carId: number) => {
         this.setState({
             carIdToEdit: carId
         });
-    }
+    };
 
     saveCar = (carToSave: Car) => {
 
@@ -74,13 +68,13 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
             cars: this.state.cars,
             carIdToEdit: 0
         })
-    }
+    };
 
     cancelCarEdit = () => {
         this.setState({
             carIdToEdit: 0
         })
-    }
+    };
 
     render() {
         return <>
@@ -93,6 +87,6 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
                 onCancelEditHandler={this.cancelCarEdit} />
             <CarForm onSubmitCar={this.addCar} />
         </>
-    }
+    };
 
 };
