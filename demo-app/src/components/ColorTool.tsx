@@ -1,38 +1,27 @@
 import React from 'react';
 
 import { ToolHeader } from './ToolHeader';
+import { ColorForm } from './ColorForm';
 
 interface ColorToolProps {
     colors: string[];
 }
 
 interface ColorToolState {
-    color: string;
-    colors: string[],
-    [ x: string]: any; //Allows for the [e.target.name] call in the change() function
+    colors: string[]
 }
 
 export class ColorTool extends React.Component<ColorToolProps,ColorToolState> {
     state = {
-        color: '',
         colors: this.props.colors.slice(),
     }
 
-    //class arrow functions, not valid JS but used for
-    //proper binding of "this" for the event function.
-    change = ({ target : { name, value, type }}: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            [ name ]: type === 'number' ?  Number(value) : value,
-        }, () => {
-            console.log(this.state.color)
-        });
-    };
+    
 
-    addColor = () => {
-        if(!this.state.color) return;
+    addColor = (color: string) => {
+        if(!color) return;
         this.setState({
-            colors: this.state.colors.concat(this.state.color),
-            color: ''
+            colors: this.state.colors.concat(color),
         });
     }
 
@@ -47,15 +36,7 @@ export class ColorTool extends React.Component<ColorToolProps,ColorToolState> {
                 }
             </ul>
 
-            <form>
-                <div>
-                    <label htmlFor="color-input">New Color:</label>
-                    <input type="text" id="color-input" name="color" value={this.state.color} onChange={this.change}/>
-                </div>
-                <div>
-                    <button type="button" onClick={this.addColor}>Add Color</button>
-                </div>
-            </form>
+            <ColorForm onSubmitColor={this.addColor} />
         </>
     }
 }
