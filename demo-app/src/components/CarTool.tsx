@@ -20,6 +20,10 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
     }
 
     addCar = (submittedCar: Car) => {
+        var newId = this.getNewId();
+
+        submittedCar.id = newId;
+
         this.setState({
             cars: [ ...this.state.cars, submittedCar ]
         }, () => {
@@ -27,10 +31,12 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         })
     }
 
-    deleteCar = (carToDelete: number) => {
+    deleteCar = (carIdToDelete: number) => {
+        if(!carIdToDelete) return;
+
         this.setState({
             cars: this.state.cars.filter(car => {
-                return car.id !== carToDelete
+                return car.id !== carIdToDelete
             })
         })
     }
@@ -38,7 +44,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
     getNewId = () => {
         var newId = 1;
         if(this.state.cars.length){
-            newId = Math.max(...this.state.cars.map(car => car.id), 0) + 1;
+            newId = Math.max(...this.state.cars.map(car => car.id as number), 0) + 1;
         }
 
         return newId;
@@ -48,7 +54,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         return <>
             <ToolHeader headerText="Car Tool" />
             <CarTable cars={this.state.cars} onDeleteCarHandler={this.deleteCar} />
-            <CarForm onSubmitCar={this.addCar} onGetId={this.getNewId} />
+            <CarForm onSubmitCar={this.addCar} />
         </>
     }
 

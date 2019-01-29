@@ -4,7 +4,6 @@ import { Car } from '../models/Car';
 
 interface CarFormProps {
     onSubmitCar: (newCar: Car) => void;
-    onGetId: () => number;
 }
 
 interface CarFormState {
@@ -34,11 +33,8 @@ export class CarForm extends React.Component<CarFormProps, CarFormState> {
     }
 
     submitCar = () => {
-        
-        var newId = this.props.onGetId();
 
         let submittedCar: Car = {
-            id: newId,
             make: this.state.make,
             model: this.state.model,
             year: this.state.year,

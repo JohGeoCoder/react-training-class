@@ -15,6 +15,6 @@ export const CarViewRow = (props: CarViewRowProps) => {
         <td>{props.car.year}</td>
         <td>{props.car.color}</td>
         <td>{props.car.price}</td>
-        <td><button type="button" onClick={() => props.onDeleteCarHandler(props.car.id)}>Delete</button></td>
+        <td><button type="button" onClick={() => props.onDeleteCarHandler(props.car.id as number)}>Delete</button></td>
     </tr>
 }
