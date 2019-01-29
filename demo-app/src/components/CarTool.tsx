@@ -77,7 +77,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
     render() {
         return <>
             <ToolHeader headerText="Car Tool" />
-            <CarTable cars={this.state.cars} deleteCarHandler={this.deleteCar} />
+            <CarTable cars={this.state.cars} onDeleteCarHandler={this.deleteCar} />
 
             <div>
                 <h3>Add a new car</h3>

@@ -4,7 +4,7 @@ import { Car } from '../models/Car';
 
 interface CarViewRowProps {
     car: Car;
-    deleteCarHandler:(carId: number) => void;
+    onDeleteCarHandler:(carId: number) => void;
 }
 
 export const CarViewRow = (props: CarViewRowProps) => {
@@ -15,6 +15,6 @@ export const CarViewRow = (props: CarViewRowProps) => {
         <td>{props.car.year}</td>
         <td>{props.car.color}</td>
         <td>{props.car.price}</td>
-        <td><button type="button" onClick={() => props.deleteCarHandler(props.car.id)}>Delete</button></td>
+        <td><button type="button" onClick={() => props.onDeleteCarHandler(props.car.id)}>Delete</button></td>
     </tr>
 }

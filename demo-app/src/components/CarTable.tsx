@@ -5,7 +5,7 @@ import { CarViewRow } from './CarViewRow';
 
 interface CarTableProps {
     cars: Car[];
-    deleteCarHandler:(carId: number) => void;
+    onDeleteCarHandler:(carId: number) => void;
 }
 
 export const CarTable = (props: CarTableProps) => {
@@ -25,7 +25,7 @@ export const CarTable = (props: CarTableProps) => {
             <tbody>
                 {
                     props.cars.map(car => 
-                        <CarViewRow key={car.id} car={car} deleteCarHandler={props.deleteCarHandler}/>
+                        <CarViewRow key={car.id} car={car} onDeleteCarHandler={props.onDeleteCarHandler}/>
                     )
                 }
             </tbody>
