@@ -7,6 +7,8 @@ import { CarForm } from './CarForm';
 
 interface CarToolState {
     cars: Car[];
+    carIdToEdit: number;
+
 };
 
 interface CarToolTypeProps {
@@ -17,6 +19,7 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
 
     state = {
         cars: this.props.cars.concat(),
+        carIdToEdit: 0,
     }
 
     addCar = (submittedCar: Car) => {
@@ -37,7 +40,8 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         this.setState({
             cars: this.state.cars.filter(car => {
                 return car.id !== carIdToDelete
-            })
+            }),
+            carIdToEdit: 0
         })
     }
 
@@ -50,10 +54,43 @@ export class CarTool extends React.Component<CarToolTypeProps,CarToolState> {
         return newId;
     }
 
+    initializeCarEdit = (carId: number) => {
+        this.setState({
+            carIdToEdit: carId
+        });
+    }
+
+    saveCar = (carToSave: Car) => {
+
+        let carToEdit = this.state.cars.filter(car => car.id === carToSave.id)[0];
+
+        carToEdit.make = carToSave.make;
+        carToEdit.model = carToSave.model;
+        carToEdit.year = carToSave.year;
+        carToEdit.color = carToSave.color;
+        carToEdit.price = carToSave.price;
+
+        this.setState({
+            cars: this.state.cars,
+            carIdToEdit: 0
+        })
+    }
+
+    cancelCarEdit = () => {
+        this.setState({
+            carIdToEdit: 0
+        })
+    }
+
     render() {
         return <>
             <ToolHeader headerText="Car Tool" />
-            <CarTable cars={this.state.cars} onDeleteCarHandler={this.deleteCar} />
+            <CarTable cars={this.state.cars} 
+                onDeleteCarHandler={this.deleteCar} 
+                carIdToEdit={this.state.carIdToEdit}
+                onInitializeCarEdit={this.initializeCarEdit}
+                onSaveCarHandler={this.saveCar}
+                onCancelEditHandler={this.cancelCarEdit} />
             <CarForm onSubmitCar={this.addCar} />
         </>
     }

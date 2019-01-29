@@ -2,10 +2,15 @@ import React from 'react'
 
 import { Car } from '../models/Car';
 import { CarViewRow } from './CarViewRow';
+import { CarEditRow } from './CarEditRow';
 
 interface CarTableProps {
     cars: Car[];
-    onDeleteCarHandler:(carId: number) => void;
+    carIdToEdit: number,
+    onInitializeCarEdit: (carId: number) => void;
+    onDeleteCarHandler: (carId: number) => void;
+    onSaveCarHandler: (car: Car) => void;
+    onCancelEditHandler: () => void;
 }
 
 export const CarTable = (props: CarTableProps) => {
@@ -24,9 +29,14 @@ export const CarTable = (props: CarTableProps) => {
             </thead>
             <tbody>
                 {
-                    props.cars.map(car => 
-                        <CarViewRow key={car.id} car={car} onDeleteCarHandler={props.onDeleteCarHandler}/>
-                    )
+                    props.cars.map(car => {
+                        if(car.id === props.carIdToEdit){
+                            return <CarEditRow key={car.id} car={car} onSaveHandler={props.onSaveCarHandler} onCancelHandler={props.onCancelEditHandler} />
+                        } else{
+                            return <CarViewRow key={car.id} car={car} onDeleteCarHandler={props.onDeleteCarHandler} onEditHandler={props.onInitializeCarEdit} />
+                        }
+                        
+                    })
                 }
             </tbody>
         </table>
