@@ -1,0 +1,15 @@
+Exercise 8
+
+1. Add a button to the CarViewRow component named 'Edit'. When the button is clicked, that car will switch to CarEditRow component.
+
+2. The CarEditRow component will display input fields for the make, model, year, color, and price columns. The id column is not editable but should be displayed. In the actions columns, add two buttons: 'Save', and 'Cancel'. The 'Save' button will save the edits to the car list, the 'Cancel' button will drop the changes. Both buttons will change the row back to View Mode.
+
+Note: Only one row is editable at a time.
+
+3. If a row is being edited and the Delete button on another row is clicked or the Add button is clicked, the changes in the row being edited are dropped and the row changes back to the view mode. Do process the Add and Delete button actions.
+
+4. If another row's Edit button is clicked when another is being edited, the row being edited changes back to View Mode and the changes are dropped. Do process the Edit button actions.
+
+5. After clicking Save, display a message at the top of the application indicating that the row was saved.
+
+6. Ensure the application works.
