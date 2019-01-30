@@ -36,7 +36,7 @@ export class ColorTool extends React.Component<ColorToolProps,ColorToolState> {
                 }
             </ul>
 
-            <ColorForm onSubmitColor={this.addColor} />
+            <ColorForm onSubmitColor={this.addColor} buttonText="Add Color" />
         </>
     }
 }

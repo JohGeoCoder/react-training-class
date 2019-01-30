@@ -1,51 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 interface ColorFormProps {
     onSubmitColor: (newColor: string) => void;
     buttonText?: string;
 }
 
-interface ColorFormState {
-    color: string;
-    [ x: string ]: any;
-}
+export const ColorForm = (props: ColorFormProps) => {
 
-export class ColorForm extends React.Component<ColorFormProps, ColorFormState> {
-    static defaultProps = { buttonText : 'Submit Color' }
+    const [ color, setColor ] = useState('');
 
-    state = {
-        color: '',
-        buttonText: this.props.buttonText
-    }
+    const colorInput = useRef<HTMLInputElement>(null); //React.createRef<HTMLInputElement>()
 
-    //class arrow functions, not valid JS but used for
-    //proper binding of "this" for the event function.
-    change = ({ target : { name, value, type }}: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            [ name ]: type === 'number' ?  Number(value) : value,
-        }, () => {
-            console.log(this.state.color)
-        });
+    //Manage side-effects. Runs after the render is complete.
+    useEffect(() => {
+
+        //Set the focus to the color input field.
+        if(colorInput.current){
+            colorInput.current.focus();
+        }
+    })
+
+    const submitColor = () => {
+        props.onSubmitColor(color);
+
+        setColor('')
     };
 
-    submitColor = () => {
-        this.props.onSubmitColor(this.state.color);
-
-        this.setState({
-            color: ''
-        })
-    };
-
-
-    render() {
-        return <form>
-            <div>
-                <label htmlFor="color-input">New Color:</label>
-                <input type="text" id="color-input" name="color" value={this.state.color} onChange={this.change}/>
-            </div>
-            <div>
-                <button type="button" onClick={this.submitColor}>{this.state.buttonText}</button>
-            </div>
-        </form>
-    }
+    return <form>
+        <div>
+            <label htmlFor="color-input">New Color:</label>
+            <input type="text" id="color-input" name="color" ref={colorInput} value={color} onChange={e => setColor(e.target.value)}/>
+        </div>
+        <div>
+            <button type="button" onClick={submitColor}>{props.buttonText}</button>
+        </div>
+    </form>
 }
