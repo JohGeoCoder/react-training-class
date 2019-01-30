@@ -1,0 +1,8 @@
+Exercise 10
+
+1. Create a CalculatorTool component. As described on the wall.
+2. Add support to your redux mechanism for multiply and divide.
+3. Connect redux to your new CalcTool React component.
+4. Ensure you register the component re-rendering via the store subscribe mechanism.
+
+Ensure it works.
