@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, bindActionCreators, Action, Dispatch, applyMiddleware} from 'redux';
 import { connect, Provider } from 'react-redux';
+import { composeWithDevTools } from  'redux-devtools-extension';
 
 import { actionFromClassMiddleware } from './middleware/actionFromClass';
 
@@ -65,7 +66,7 @@ export const calcReducer = ( state: CalcState = { result: 0 }, action: CalcActio
   }
 };
 
-const store = createStore(calcReducer, applyMiddleware(actionFromClassMiddleware));
+const store = createStore(calcReducer, composeWithDevTools(applyMiddleware(actionFromClassMiddleware)));
 
 interface CalcToolProps {
   result: number;
